@@ -6,9 +6,10 @@ import { Controls } from "../components/Controls";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectAllCountries,
+  selectFilteredCountries,
   selectCountriesInfo,
 } from "../store/countries/countries-selectors";
+import { selectSearch } from "../store/controls/controls-selectors";
 import { loadCountries } from "../store/countries/countries-actions";
 
 import { useEffect } from "react";
@@ -17,7 +18,9 @@ export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const countries = useSelector(selectAllCountries);
+  const search = useSelector(selectSearch);
+  const countries = useSelector((state) => selectFilteredCountries(state, { search }));
+
   const { countriesCount, err, status } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
