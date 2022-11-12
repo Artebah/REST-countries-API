@@ -9,7 +9,7 @@ import {
   selectFilteredCountries,
   selectCountriesInfo,
 } from "../store/countries/countries-selectors";
-import { selectSearch } from "../store/controls/controls-selectors";
+import { selectControls } from "../store/controls/controls-selectors";
 import { loadCountries } from "../store/countries/countries-actions";
 
 import { useEffect } from "react";
@@ -18,8 +18,10 @@ export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const search = useSelector(selectSearch);
-  const countries = useSelector((state) => selectFilteredCountries(state, { search }));
+  const { search, region } = useSelector(selectControls);
+  const countries = useSelector((state) =>
+    selectFilteredCountries(state, { search, region })
+  );
 
   const { countriesCount, err, status } = useSelector(selectCountriesInfo);
 
