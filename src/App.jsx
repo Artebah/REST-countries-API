@@ -8,19 +8,22 @@ import { Details } from "./pages/Details";
 import { NotFound } from "./pages/NotFound";
 
 import { Provider } from "react-redux";
-import { store } from "./store/index";
+import { persistor, store } from "./store/index";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
     <Provider store={store}>
-      <Header />
-      <Main>
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/country/:name" element={<Details />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Main>
+      <PersistGate loading={null} persistor={persistor}>
+        <Header />
+        <Main>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route path="/country/:name" element={<Details />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Main>
+      </PersistGate>
     </Provider>
   );
 }
