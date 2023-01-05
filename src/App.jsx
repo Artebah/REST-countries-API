@@ -8,7 +8,7 @@ import { Details } from "./pages/Details";
 import { NotFound } from "./pages/NotFound";
 
 import { Provider } from "react-redux";
-import { persistor, store } from "./store/index";
+import { persistor, store } from "./store.js";
 import { PersistGate } from "redux-persist/integration/react";
 
 function App() {

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectNeighbours } from "../store/details/details-selectors";
 import { useEffect } from "react";
-import { loadNeighbours } from "../store/details/details-actions";
+import { loadNeighbours, selectNeighbours } from "../features/details/details-slice";
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -163,7 +162,7 @@ export const Info = (props) => {
         <Meta>
           <b>Border Countries</b>
           {!borders.length ? (
-            <span>There is no border countries</span>
+            <span>There are no border countries</span>
           ) : (
             <TagGroup>
               {neighbours.map((b) => (
